@@ -49,7 +49,13 @@ git clone https://github.com/adamanr/TaskManager.git
 cd task_manager
 ```
 
-### 3. Настройте базу данных
+### 3. Установите зависимости проекта
+
+```bash
+mix deps.get
+```
+
+### 4. Настройте базу данных
 
 Создайте базу данных и настройте подключение в файле `config/config.exs`:
 
@@ -65,12 +71,6 @@ config :task_manager, TaskManager.Repo,
 ```bash
 mix ecto.create
 mix ecto.migrate
-```
-
-### 4. Установите зависимости проекта
-
-```bash
-mix deps.get
 ```
 
 ### 5. Подтяните npm зависимости (Нужно для tailwind) 
