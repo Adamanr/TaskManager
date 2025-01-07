@@ -45,7 +45,7 @@
 ### 2. Клонируйте репозиторий
 
 ```bash
-git clone https://github.com/ваш-username/task_manager.git
+git clone https://github.com/adamanr/TaskManager.git
 cd task_manager
 ```
 
