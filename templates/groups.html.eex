@@ -1,0 +1,77 @@
+<div class="min-h-screen bg-gray-50 text-gray-900">
+  <div class="pl-64">
+    <header class="bg-white border-b border-gray-200 sticky top-0 z-20">
+      <div class="flex items-center justify-between px-8 py-4">
+        <div class="flex items-center space-x-4">
+          <h1 class="text-xl font-semibold">Группы задач</h1>
+      </div>
+
+        <div class="flex items-center space-x-4">
+          <a href="/groups/new" class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-all">
+            + Новая группа
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <main class="py-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+         <%= for group <- groups |> Enum.sort_by(& &1.is_pinned, :desc) do %>
+          <div class="relative p-6 rounded-xl border border-gray-200 hover:shadow-lg transition-all overflow-hidden group">
+            <%= if group.image do %>
+              <div class="absolute inset-0 z-0">
+                <img src="<%= group.image %>" alt="<%= group.name %>" class="w-full h-full object-cover"/>
+                <div class="absolute inset-0 bg-black opacity-30"></div>
+              </div>
+            <% else %>
+              <div class="absolute inset-0 z-0 bg-gradient-to-br from-blue-50 to-purple-50"></div>
+            <% end %>
+
+            <div class="relative z-10">
+              <div class="flex items-center justify-between mb-4">
+                <a href="/groups/group/<%= group.id %>">
+                    <h2 class="text-lg font-semibold <%= if group.image, do: "text-white", else: "text-gray-800" %>">
+                      <%= group.name %>
+                    </h2>
+                </a>
+
+
+                <%= if group.is_pinned do %>
+                  <svg class="h-5 w-5 <%= if group.image, do: "text-yellow-300", else: "text-yellow-500" %>" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path d="M12 17l-6 3 1-6.5L2 9l6.5-1L12 2l3.5 6.5L22 9l-5 4.5 1 6.5z"
+                          stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                <% end %>
+              </div>
+
+              <div class="mb-4">
+                <label class="text-sm font-medium <%= if group.image, do: "text-gray-300", else: "text-gray-600" %>">
+                  Дедлайн
+                </label>
+                <div class="mt-1">
+                  <span class="text-sm <%= if group.image, do: "text-gray-200", else: "text-gray-700" %>">
+                    <%= if group.deadline do %>
+                      <%= Calendar.strftime(group.deadline, "%d.%m.%Y %H:%M") %>
+                    <% else %>
+                      Не установлен
+                    <% end %>
+                  </span>
+                </div>
+              </div>
+
+              <div class="flex items-center space-x-2">
+                  <a href="/groups/edit/<%= group.id %>" class="p-1 text-white rounded-lg hover:bg-blue-600 transition-all">
+                    <svg class="h-5 w-5 text-amber-500" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M8.56078 20.2501L20.5608 8.25011L15.7501 3.43945L3.75012 15.4395V20.2501H8.56078ZM15.7501 5.56077L18.4395 8.25011L16.5001 10.1895L13.8108 7.50013L15.7501 5.56077ZM12.7501 8.56079L15.4395 11.2501L7.93946 18.7501H5.25012L5.25012 16.0608L12.7501 8.56079Z" fill="#ffffff"></path> </g></svg>
+                  </a>
+                  <a href="/groups/delete/<%= group.id %>" class="p-1 text-white rounded-lg hover:bg-red-600 transition-all">
+                    <svg class="h-5 w-5 text-rose-500" width="20" height="20" viewBox="0 -0.5 21 21" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="currentColor" stroke="currentColor"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title></title> <desc>Created with Sketch.</desc> <defs> </defs> <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"> <g id="Dribbble-Light-Preview" transform="translate(-179.000000, -360.000000)" fill="currentColor"> <g id="icons" transform="translate(56.000000, 160.000000)"> <path d="M130.35,216 L132.45,216 L132.45,208 L130.35,208 L130.35,216 Z M134.55,216 L136.65,216 L136.65,208 L134.55,208 L134.55,216 Z M128.25,218 L138.75,218 L138.75,206 L128.25,206 L128.25,218 Z M130.35,204 L136.65,204 L136.65,202 L130.35,202 L130.35,204 Z M138.75,204 L138.75,200 L128.25,200 L128.25,204 L123,204 L123,206 L126.15,206 L126.15,220 L140.85,220 L140.85,206 L144,206 L144,204 L138.75,204 Z" id="delete-[#ffffff]"> </path> </g> </g> </g> </g></svg>
+                  </a>
+              </div>
+
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </main>
+  </div>
+</div>

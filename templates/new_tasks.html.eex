@@ -1,0 +1,82 @@
+<div class="min-h-screen text-gray-900">
+  <div class="pl-64">
+    <header class="max-w-4xl mx-auto bg-white border-b border-gray-200 sticky top-0 z-10">
+      <div class="flex items-center justify-between px-8 py-4">
+        <div class="flex items-center space-x-4">
+          <a href="/tasks">X</a>
+          <h1 class="text-xl font-semibold">Создание задачи</h1>
+        </div>
+      </div>
+    </header>
+
+    <main class="px-8 py-6">
+      <form method="POST" action="/tasks/new" class="max-w-4xl mx-auto bg-white p-8 rounded-xl border border-gray-200 shadow-sm">
+        <div class="mb-6">
+          <label for="title" class="block text-sm font-medium text-gray-700 mb-2">Заголовок*</label>
+          <input type="text"
+                 id="title"
+                 name="title"
+                 required
+                 class="w-full px-4 py-2 bg-gray-100 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                 placeholder="Введите заголовок задачи"/>
+        </div>
+
+        <div class="mb-6">
+          <label for="desc" class="block text-sm font-medium text-gray-700 mb-2">Описание</label>
+          <textarea id="desc"
+                    name="desc"
+                    rows="4"
+                    class="w-full px-4 py-2 bg-gray-100 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                    placeholder="Добавьте описание задачи"></textarea>
+        </div>
+
+        <div class="mb-6">
+          <label for="status" class="block text-sm font-medium text-gray-700 mb-2">Статус</label>
+          <select id="status"
+                  name="status"
+                  required
+                  class="w-full px-4 py-2 bg-gray-100 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all">
+            <option value="pending">Ожидает</option>
+            <option value="in_progress">В работе</option>
+            <option value="completed">Выполнено</option>
+          </select>
+        </div>
+
+        <div class="mb-6">
+          <label for="priority" class="block text-sm font-medium text-gray-700 mb-2">Приоритет</label>
+          <select id="priority"
+                  name="priority"
+                  class="w-full px-4 py-2 bg-gray-100 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all">
+            <option value="1">Низкий</option>
+            <option value="2">Средний</option>
+            <option value="3">Высокий</option>
+            <option value="4">Критический</option>
+          </select>
+        </div>
+
+        <div class="mb-6">
+          <label for="deadline" class="block text-sm font-medium text-gray-700 mb-2">Дедлайн</label>
+          <input type="datetime-local"
+                 id="deadline"
+                 name="deadline"
+                 class="w-full px-4 py-2 bg-gray-100 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"/>
+        </div>
+
+        <div class="mb-6">
+          <label for="completed_at" class="block text-sm font-medium text-gray-700 mb-2">Дата выполнения</label>
+          <input type="datetime-local"
+            id="completed_at"
+            name="completed_at"
+            class="w-full px-4 py-2 bg-gray-100 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"/>
+        </div>
+
+        <div class="flex justify-end">
+          <button type="submit"
+                  class="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-all">
+            Создать задачу
+          </button>
+        </div>
+      </form>
+    </main>
+  </div>
+</div>

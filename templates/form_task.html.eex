@@ -1,0 +1,85 @@
+<div class="min-h-screen text-gray-900">
+  <div class="pl-64">
+    <header class="max-w-4xl mx-auto bg-white border-b border-gray-200 sticky top-0 z-10">
+      <div class="flex items-center justify-between px-8 py-4">
+        <div class="flex items-center space-x-4">
+          <a href="<%= back %>">X</a>
+          <h1 class="text-xl font-semibold"><%= title %></h1>
+        </div>
+      </div>
+    </header>
+
+    <main class="px-8 py-6">
+      <form method="POST" action="<%= action %>" class="max-w-4xl mx-auto bg-white p-8 rounded-xl border border-gray-200 shadow-sm">
+        <div class="mb-6">
+          <label for="title" class="block text-sm font-medium text-gray-700 mb-2">Заголовок*</label>
+          <input type="text"
+                 id="title"
+                 name="title"
+                 required
+                 value="<%= task.title %>"
+                 class="w-full px-4 py-2 bg-gray-100 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                 placeholder="Введите заголовок задачи"/>
+        </div>
+
+        <div class="mb-6">
+          <label for="desc" class="block text-sm font-medium text-gray-700 mb-2">Описание</label>
+          <textarea id="desc"
+                    name="desc"
+                    rows="4"
+                    class="w-full px-4 py-2 bg-gray-100 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                    placeholder="Добавьте описание задачи"><%= task.desc %></textarea>
+        </div>
+
+        <div class="mb-6">
+          <label for="status" class="block text-sm font-medium text-gray-700 mb-2">Статус</label>
+          <select id="status"
+                  name="status"
+                  required
+                  class="w-full px-4 py-2 bg-gray-100 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all">
+            <option value="pending" <%= if task.status == "pending", do: "selected" %>>Ожидает</option>
+            <option value="in_progress" <%= if task.status == "in_progress", do: "selected" %>>В работе</option>
+            <option value="completed" <%= if task.status == "completed", do: "selected" %>>Выполнено</option>
+          </select>
+        </div>
+
+        <div class="mb-6">
+          <label for="priority" class="block text-sm font-medium text-gray-700 mb-2">Приоритет</label>
+          <select id="priority"
+                  name="priority"
+                  class="w-full px-4 py-2 bg-gray-100 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all">
+            <option value="1" <%= if task.priority == 1, do: "selected" %>>Низкий</option>
+            <option value="2" <%= if task.priority == 2, do: "selected" %>>Средний</option>
+            <option value="3" <%= if task.priority == 3, do: "selected" %>>Высокий</option>
+            <option value="4" <%= if task.priority == 4, do: "selected" %>>Критический</option>
+          </select>
+        </div>
+
+          <div class="mb-6">
+            <label for="deadline" class="block text-sm font-medium text-gray-700 mb-2">Дедлайн</label>
+            <input type="datetime-local"
+                  id="deadline"
+                  name="deadline"
+                  value="<%= if task.deadline, do: NaiveDateTime.to_iso8601(task.deadline) |> String.replace(" ", "T") %>"
+                  class="w-full px-4 py-2 bg-gray-100 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"/>
+          </div>
+
+          <div class="mb-6">
+            <label for="completed_at" class="block text-sm font-medium text-gray-700 mb-2">Дата выполнения</label>
+            <input type="datetime-local"
+                  id="completed_at"
+                  name="completed_at"
+                  value="<%= if task.completed_at, do: NaiveDateTime.to_iso8601(task.completed_at) |> String.replace(" ", "T") %>"
+                  class="w-full px-4 py-2 bg-gray-100 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"/>
+          </div>
+
+        <div class="flex justify-end">
+          <button type="submit"
+                  class="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-all">
+            Создать задачу
+          </button>
+        </div>
+      </form>
+    </main>
+  </div>
+</div>

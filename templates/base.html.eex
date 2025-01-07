@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/app.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="icon" type="image/svg+xml" href="/logo.svg">
+  <title><%= title || "Default Title" %></title>
+</head>
+<body>
+  <div class="flex h-screen bg-gray-50">
+    <div class="fixed inset-y-0 left-0 w-64 lg:block hidden bg-white border-r border-gray-200 shadow-sm">
+      <a href="/">
+        <div class="flex items-center space-x-3 px-6 py-5 border-b border-gray-200">
+          <div class="h-8 w-8 rounded-lg ">
+            <img src="/logo.svg" class=""/>
+          </div>
+          <span class="text-xl font-semibold">TaskManager</span>
+        </div>
+      </a>
+
+      <nav class="px-4 py-4 space-y-1">
+        <a href="/" class="flex items-center space-x-3 px-3 py-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all">
+          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="#000">
+            <path d="M4 13h6a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1zm0 8h6a1 1 0 0 0 1-1v-4a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1zm10 0h6a1 1 0 0 0 1-1v-8a1 1 0 0 0-1-1h-6a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1zm0-12h6a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1h-6a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1z"
+                  stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <span>Обзор</span>
+        </a>
+        <a href="/tasks" class="flex items-center space-x-3 px-3 py-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all">
+
+          <svg class="h-5 w-5" fill="#000000" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" xml:space="preserve"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <g> <path d="M369.44,0H141.889C97.971,0,62.578,36.182,62.578,80.108v352.675c0,43.927,35.393,79.217,79.311,79.217H369.44 c43.917,0,79.982-35.29,79.982-79.217V80.108C449.422,36.182,413.357,0,369.44,0z M426.667,432.783 c0,31.379-25.857,56.461-57.227,56.461H141.889c-31.371,0-56.556-25.082-56.556-56.461V80.108 c0-31.379,25.185-57.353,56.556-57.353H369.44c31.37,0,57.227,25.973,57.227,57.353V432.783z"></path> </g> </g> <g> <g> <rect x="153.6" y="56.889" width="204.8" height="22.756"></rect> </g> </g> <g> <g> <path d="M153.6,170.667h-11.378c-6.283,0-11.378,5.094-11.378,11.378V204.8c0,6.283,5.094,11.378,11.378,11.378H153.6 c6.283,0,11.378-5.094,11.378-11.378v-22.756C164.978,175.761,159.883,170.667,153.6,170.667z"></path> </g> </g> <g> <g> <path d="M153.6,273.067h-11.378c-6.283,0-11.378,5.094-11.378,11.378V307.2c0,6.283,5.094,11.378,11.378,11.378H153.6 c6.283,0,11.378-5.094,11.378-11.378v-22.756C164.978,278.161,159.883,273.067,153.6,273.067z"></path> </g> </g> <g> <g> <path d="M153.6,375.467h-11.378c-6.283,0-11.378,5.094-11.378,11.378V409.6c0,6.283,5.094,11.378,11.378,11.378H153.6 c6.283,0,11.378-5.094,11.378-11.378v-22.756C164.978,380.561,159.883,375.467,153.6,375.467z"></path> </g> </g> <g> <g> <rect x="199.111" y="182.044" width="182.044" height="22.756"></rect> </g> </g> <g> <g> <rect x="199.111" y="284.444" width="182.044" height="22.756"></rect> </g> </g> <g> <g> <rect x="199.111" y="386.844" width="182.044" height="22.756"></rect> </g> </g> </g></svg>
+          <span>Задачи</span>
+        </a>
+        <a href="/groups" class="flex items-center space-x-3 px-3 py-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all">
+          <svg class="h-5 w-5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>affinitydiagram</title> <g> <rect x="8" y="2" width="8" height="5"></rect> <rect x="2" y="9" width="5" height="5"></rect> <rect x="17" y="9" width="5" height="5"></rect> <rect x="9.5" y="9" width="5" height="5"></rect> <rect x="2" y="16" width="5" height="5"></rect> <rect x="17" y="16" width="5" height="5"></rect> <rect x="9.5" y="16" width="5" height="5"></rect> <rect width="24" height="24" fill="none"></rect> </g> </g></svg>
+          <span>Группы</span>
+        </a>
+        <a href="/tasks/new " class="flex items-center space-x-3 px-3 py-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all">
+          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M12 4v16m8-8H4" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <span>Создать</span>
+        </a>
+      </nav>
+    </div>
+
+
+    <div class="w-full p-10  overflow-y-scroll">
+      <%= content %>
+    </div>
+  </div>
+</body>
+</html>

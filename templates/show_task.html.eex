@@ -1,0 +1,121 @@
+<div class="min-h-screen bg-gray-50 text-gray-900">
+  <!-- Main Content -->
+  <div class="pl-64">
+    <!-- Header -->
+    <header class="max-w-4xl mx-auto bg-white border-b border-gray-200 sticky top-0 z-10">
+      <div class="flex items-center justify-between px-8 py-4">
+        <div class="flex items-center space-x-4">
+          <a href="/tasks">X</a>
+          <h1 class="text-xl font-semibold">Задача: <%= task.title %></h1>
+          <div class="flex items-center space-x-2">
+            <span class="flex h-2 w-2 relative">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+            </span>
+            <span class="text-sm text-gray-500">Синхронизировано</span>
+          </div>
+        </div>
+
+        <div class="flex items-center space-x-4">
+          <a href="/tasks/edit/<%= task.id %>" class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-all">
+            Редактировать
+          </a>
+       <form action="/tasks/delete/<%= task.id %>" method="POST" class="inline">
+          <input type="hidden" name="_method" value="DELETE">
+          <button type="submit" class="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-all">
+            Удалить
+          </button>
+        </form>
+        </div>
+      </div>
+    </header>
+
+    <main class="py-6">
+      <!-- Основная информация о задаче -->
+      <div class="max-w-4xl mx-auto bg-white p-8 rounded-xl border border-gray-200 shadow-sm">
+        <!-- Заголовок -->
+        <div class="mb-6">
+          <h2 class="text-lg font-semibold text-gray-900"><%= task.title %></h2>
+        </div>
+
+        <!-- Описание -->
+        <div class="mb-6">
+          <p class="text-sm text-gray-500"><%= task.desc || "Описание отсутствует" %></p>
+        </div>
+
+
+
+        <!-- Дедлайн -->
+        <div class="mb-6">
+          <label class="text-sm font-medium text-gray-700">Дедлайн</label>
+          <div class="mt-1">
+            <span class="text-sm text-gray-500">
+              <%= if task.deadline do %>
+                <%= Calendar.strftime(task.deadline, "%d.%m.%Y %H:%M") %>
+              <% else %>
+                Не установлен
+              <% end %>
+            </span>
+          </div>
+        </div>
+
+        <!-- Дата выполнения -->
+        <div class="mb-6">
+          <label class="text-sm font-medium text-gray-700">Дата выполнения</label>
+          <div class="mt-1">
+            <span class="text-sm text-gray-500">
+              <%= if task.completed_at do %>
+                <%= Calendar.strftime(task.completed_at, "%d.%m.%Y %H:%M") %>
+              <% else %>
+                Не выполнено
+              <% end %>
+            </span>
+          </div>
+        </div>
+
+        <div class="flex gap-5">
+        <div class="mb-6 text-center">
+          <label class="text-sm  font-medium text-gray-700">Статус</label>
+          <div class="mt-1">
+            <% status_class = case task.status do
+              "completed" -> "bg-green-100 text-green-700"
+              "in_progress" -> "bg-blue-100 text-blue-700"
+              _ -> "bg-gray-100 text-gray-700"
+            end %>
+            <% status_text = case task.status do
+              "completed" -> "Выполнено"
+              "in_progress" -> "В работе"
+              _ -> "Ожидает"
+            end %>
+            <span class="px-2 py-1 text-xs font-medium <%= status_class %> rounded-full">
+              <%= status_text %>
+            </span>
+          </div>
+        </div>
+
+        <!-- Приоритет -->
+        <div class="mb-6 text-center">
+          <label class="text-sm font-medium text-gray-700">Приоритет</label>
+          <div class="mt-1">
+            <% priority_class = case task.priority do
+              4 -> "bg-red-100 text-red-700"
+              3 -> "bg-amber-100 text-amber-700"
+              2 -> "bg-blue-100 text-blue-700"
+              1 -> "bg-gray-100 text-gray-700"
+            end %>
+            <% priority_text = case task.priority do
+              4 -> "Критический"
+              3 -> "Высокий"
+              2 -> "Средний"
+              1 -> "Низкий"
+            end %>
+            <span class="px-4 py-1 text-xs font-medium <%= priority_class %> rounded-full">
+              <%= priority_text %>
+            </span>
+          </div>
+        </div>
+      </div>
+      </div>
+    </main>
+  </div>
+</div>
